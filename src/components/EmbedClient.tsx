@@ -6,9 +6,10 @@ import { useRouter } from "next/navigation";
 function EmbedClient({ ownerId }: { ownerId: string }) {
   const router = useRouter();
   const [copied, setCopied] = useState(false);
+  const [baseUrl] = useState(() =>
+    typeof window !== "undefined" ? window.location.origin : "https://shaya-ai.vercel.app"
+  );
 
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-  
   const embedCode = `<script 
   src="${baseUrl}/chatBot.js" 
   data-owner-id="${ownerId}" 
@@ -28,7 +29,7 @@ function EmbedClient({ ownerId }: { ownerId: string }) {
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div 
             className="flex items-center gap-2 cursor-pointer" 
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/dashboard")}
           >
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold italic">
               S
@@ -105,8 +106,8 @@ function EmbedClient({ ownerId }: { ownerId: string }) {
               <div className="bg-gray-100 border-b border-gray-200 p-3 flex items-center gap-2">
                 <div className="flex gap-1">
                   <div className="w-2 h-2 rounded-full bg-red-400" />
+                  <div className="w-2 h-2 rounded-full bg-yellow-400" />
                   <div className="w-2 h-2 rounded-full bg-green-400" />
-                   <div className="w-2 h-2 rounded-full bg-yellow-400" />
                 </div>
                 <div className="flex-1 bg-white rounded text-[10px] text-gray-400 px-2 py-0.5 border border-gray-200">
                   https://your-business.com
