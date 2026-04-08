@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
 
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 // Adding the "latest" tag often fixes the 404 lookup issue
-const model = genAI.getGenerativeModel({ model: "gemini-2.5-pro" });
+const model = genAI.getGenerativeModel({ model: "gemini-3-flash-preview" });
 
     const prompt = `
   You are a helpful customer support agent for ${setting.businessName || "our business"}.
